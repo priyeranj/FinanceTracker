@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <header class="top-nav">
+        <div class="nav-brand">Finance Tracker</div>
+        <div class="nav-actions">
+            <nav class="nav-links" aria-label="Primary navigation">
+                <a href="#dashboard">Dashboard</a>
+                <a href="#transaction-form">Add Transaction</a>
+                <a href="#transaction-list-section">Transactions</a>
+            </nav>
+            <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark mode">🌙</button>
+        </div>
+    </header>
+
+    <main class="app-container">
+        <h1>Expense Tracker</h1>
+
+        <!-- 1. Dashboard Section -->
+        <section id="dashboard" class="dashboard" aria-label="Financial Summary">
+            <div class="card">
+                <h2>Total Balance</h2>
+                <p id="total-balance">$0.00</p>
+            </div>
+
+            <div class="card card-income">
+                <h3>Total Income</h3>
+                <p id="total-income">$0.00</p>
+            </div>
+
+            <div class="card card-expense">
+                <h3>Total Expense</h3>
+                <p id="total-expense">$0.00</p>
+            </div>
+        </section>
+
+        <!-- 2. Add Transaction Section -->
+
+        <section class="transaction-form-section">
+            <h2>Add New Transaction</h2>
+
+            <form id="transaction-form" novalidate>
+                <!-- Title Field -->
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title" placeholder="e.g., Grocery Shopping" required />
+                </div>
+
+                <!-- Amount Field -->
+                <div class="form-group">
+                    <label for="amount">Amount</label>
+                    <input type="number" id="amount" name="amount" min="0.01" step="0.01" placeholder="0.00" required />
+                </div>
+
+                <!-- Category Field -->
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category" name="category" required>
+                        <option value="" disabled selected>Select category</option>
+                        <option value="salary">Salary</option>
+                        <option value="food">Food & Dining</option>
+                        <option value="utilities">Utilities</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <!-- Date Field -->
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input type="date" id="date" name="date" required />
+                </div>
+
+                <!-- Type Selection (Income vs Expense) -->
+                <div class="form-group">
+                    <label for="type">Type</label>
+                    <select id="type" name="type" required>
+                        <option value="expense">Expense</option>
+                        <option value="income">Income</option>
+                    </select>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" id="submit-btn">Add Transaction</button>
+
+                <!-- Validation Error Message -->
+                <p id="form-error" class="form-error"></p>
+            </form>
+        </section>
+
+        <!-- 3. Transaction List Section -->
+        <section id="transaction-list-section" class="transaction-list-section">
+            <h2>Transaction History</h2>
+
+            <!-- Move Filter Container OUTSIDE of the <ul> -->
+            <div class="filter-container">
+                <h3>Filter Transactions</h3>
+                <div class="filter-controls">
+
+                    <!-- 1. Search by Title -->
+                    <div class="filter-group">
+                        <label for="filter-search">Search</label>
+                        <input type="text" id="filter-search" class="filter-control" placeholder="Search by title..." />
+                    </div>
+
+                    <!-- 2. Type Filter (All / Income / Expense) -->
+                    <div class="filter-group">
+                        <label for="filter-type">Type</label>
+                        <select id="filter-type" class="filter-control">
+                            <option value="all">All Types</option>
+                            <option value="income">Income</option>
+                            <option value="expense">Expense</option>
+                        </select>
+                    </div>
+
+                    <!-- 3. Category Filter -->
+                    <div class="filter-group">
+                        <label for="filter-category">Category</label>
+                        <select id="filter-category" class="filter-control">
+                            <option value="all">All Categories</option>
+                            <option value="salary">Salary</option>
+                            <option value="food">Food & Dining</option>
+                            <option value="utilities">Utilities</option>
+                            <option value="entertainment">Entertainment</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <!-- 4. Date Filter -->
+                    <div class="filter-group">
+                        <label for="filter-date">Date</label>
+                        <input type="date" id="filter-date" class="filter-control" />
+                    </div>
+
+                    <!-- 5. Sort -->
+                    <div class="filter-group">
+                        <label for="sort-select">Sort</label>
+                        <select id="sort-select" class="filter-control">
+                            <option value="latest">Latest</option>
+                            <option value="oldest">Oldest</option>
+                            <option value="highest">Highest Amount</option>
+                            <option value="lowest">Lowest Amount</option>
+                        </select>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Clean <ul> dedicated ONLY to transaction <li> cards -->
+            <ul id="transaction-list" class="transaction-list">
+                <!-- Dynamically injected cards will go here safely -->
+            </ul>
+        </section>
+    </main>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>

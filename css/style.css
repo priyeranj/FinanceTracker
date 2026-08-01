@@ -1,0 +1,424 @@
+/* 1. Global Reset & Box Model */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 2. Page Typography & Container Styling */
+:root {
+  --bg-color: #f4f7f6;
+  --surface-color: #ffffff;
+  --surface-alt: #fafafa;
+  --text-color: #333333;
+  --muted-color: #666666;
+  --border-color: #e0e0e0;
+  --border-strong: #cccccc;
+  --input-bg: #ffffff;
+  --input-text: #333333;
+  --nav-link: #334155;
+  --nav-brand: #0f172a;
+  --accent-color: #2563eb;
+  --accent-hover: #0052a3;
+  --income-color: #2e7d32;
+  --expense-color: #c62828;
+  --empty-bg: #f8fafc;
+  --empty-color: #64748b;
+  --shadow-color: rgba(0, 0, 0, 0.06);
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  padding: 20px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+body.dark-mode {
+  --bg-color: #020617;
+  --surface-color: #111827;
+  --surface-alt: #1f2937;
+  --text-color: #f8fafc;
+  --muted-color: #cbd5e1;
+  --border-color: #334155;
+  --border-strong: #475569;
+  --input-bg: #0f172a;
+  --input-text: #f8fafc;
+  --nav-link: #cbd5e1;
+  --nav-brand: #f8fafc;
+  --accent-color: #60a5fa;
+  --accent-hover: #3b82f6;
+  --income-color: #4ade80;
+  --expense-color: #f87171;
+  --empty-bg: #1f2937;
+  --empty-color: #cbd5e1;
+  --shadow-color: rgba(0, 0, 0, 0.35);
+}
+
+.top-nav {
+  max-width: 800px;
+  margin: 0 auto 24px;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  box-shadow: 0 2px 6px var(--shadow-color);
+}
+
+.nav-brand {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--nav-brand);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 16px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--nav-link);
+  font-weight: 600;
+}
+
+.nav-links a:hover {
+  color: var(--accent-color);
+}
+
+.theme-toggle {
+  border: 1px solid var(--border-color);
+  background-color: var(--surface-alt);
+  color: var(--text-color);
+  border-radius: 999px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+.app-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.app-container h1 {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+/* 3. Dashboard Grid Layout */
+.dashboard {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+/* 4. Card Component Styling */
+.card {
+  flex: 1;
+  background-color: var(--surface-color);
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  text-align: center;
+  box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.card h2,
+.card h3 {
+  font-size: 0.9rem;
+  color: var(--muted-color);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.card p {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+/* 5. Income & Expense Specific Accents */
+.card-income p {
+  color: var(--income-color);
+}
+
+.card-expense p {
+  color: var(--expense-color);
+}
+
+
+/* 2) Form part */
+
+/* 1. Form Container Card */
+.transaction-form-section {
+  background-color: var(--surface-color);
+  padding: 24px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  margin-bottom: 32px;
+  box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.transaction-form-section h2 {
+  font-size: 1.25rem;
+  margin-bottom: 16px;
+  color: var(--text-color);
+}
+
+/* 2. Form Field Group Layout */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+/* 3. Label Styling */
+.form-group label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--muted-color);
+  margin-bottom: 6px;
+}
+
+/* 4. Input & Select Controls */
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--input-text);
+  background-color: var(--input-bg);
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover & Focus Interaction States */
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* 5. Submit Button */
+#submit-btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: var(--accent-color);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+#submit-btn:hover {
+  background-color: var(--accent-hover);
+}
+
+#submit-btn:active {
+  transform: scale(0.99);
+}
+
+.form-error {
+  margin-top: 10px;
+  color: #e74c3c;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* 3) Transaction List Section Container */
+.transaction-list-section {
+  background-color: var(--surface-color);
+  padding: 24px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.transaction-list-section h2 {
+  font-size: 1.25rem;
+  margin-bottom: 16px;
+  color: var(--text-color);
+}
+
+/* Filter Component Styling */
+.filter-container {
+  background-color: var(--surface-alt);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.filter-container h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--muted-color);
+  margin-bottom: 12px;
+}
+
+.filter-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 160px; /* Adapts and wraps neatly on smaller screens */
+  min-width: 140px;
+}
+
+.filter-group label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--muted-color);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.filter-control {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 0.875rem;
+  font-family: inherit;
+  color: var(--input-text);
+  background-color: var(--input-bg);
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.filter-control:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* 4) Transaction Cards */
+.transaction-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  
+  display: flex;
+  flex-direction: row; 
+  flex-wrap: wrap;       
+  gap: 24px; 
+  justify-content: flex-start;
+}
+
+/* Card Sizing */
+.transaction-card {
+  width: 300px;
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--surface-color);
+  border-radius: 10px;
+  padding: 14px 18px;
+  box-shadow: 0 2px 8px var(--shadow-color);
+  border-left: 5px solid #ccc;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.transaction-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.transaction-card.income {
+  border-left-color: var(--income-color);
+}
+
+.transaction-card.expense {
+  border-left-color: var(--expense-color);
+}
+
+/* Stack buttons vertically */
+.transaction-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  justify-content: center;
+}
+
+.btn-icon {
+  border: none;
+  background: transparent;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-edit {
+  color: #3498db;
+}
+
+.btn-edit:hover {
+  background-color: #ebf5fb;
+}
+
+.btn-delete {
+  color: #e74c3c;
+}
+
+.btn-delete:hover {
+  background-color: #fde8e8;
+}
+
+.empty-state {
+  width: 100%;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 24px;
+  border: 1px dashed var(--border-color);
+  border-radius: 12px;
+  background-color: var(--empty-bg);
+  color: var(--empty-color);
+}
+
+.empty-state h3 {
+  margin-bottom: 8px;
+  color: var(--text-color);
+}
+
+.empty-state p {
+  margin: 0;
+  font-size: 0.95rem;
+}
